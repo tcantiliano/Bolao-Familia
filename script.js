@@ -1,8 +1,8 @@
 // ==========================================
 // CONTROLE DO PLACAR: ALTERE APENAS AQUI!
 // ==========================================
-const GOLS_DO_BRASIL = 0;
-const GOLS_DO_ADVERSARIO = 0;
+const GOLS_DO_BRASIL = 1;
+const GOLS_DO_ADVERSARIO = 1;
 // ==========================================
 
 let apostasDoArquivo = [];
