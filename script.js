@@ -51,7 +51,6 @@ carregarDadosDoTxt();
 function atualizarTabela() {
     if (apostasDoArquivo.length === 0) return;
 
-    // Utiliza as constantes seguras definidas no topo do script
     const realBr = GOLS_DO_BRASIL;
     const realAdv = GOLS_DO_ADVERSARIO;
 
