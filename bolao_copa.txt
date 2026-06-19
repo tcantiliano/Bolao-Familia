@@ -15,3 +15,4 @@ Adnaldo, 2x1, --, 1
 Fernanda, 4x1, 3x0, 2
 Nininha, 3x1, --, 1
 Ivonete, 3x1, 4x2, 2
+joyce, --, 5x1, 1
