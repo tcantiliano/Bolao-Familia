@@ -1,16 +1,17 @@
-1x0 tiago
-2x1 tatiana
-2x0 tacinha
-1x0 luciene
-2x1 danilo
-2x1 dunga
-2x2 kalimy
-3x1 ze maria
-2x1 dedui
-2x1 adnaldo
-3x2 nisinho
-3x1 nininha
-4x1 fernanda
-3x1 aline
-3x0 gilmar
-2x1 adriana
+Adriana, 2x1, 5x1, 2
+Aline,  3x1, 4x1, 2
+Danilo, 2x1, 3x1, 2
+Dedui, 3x0, --, 1
+Dunga, 2x1, 4x2, 2
+Gilmar,  3x0, 5x1, 2
+Zé Maria, 3x1, --, 1
+Kamily, 3x1, --, 1
+Luciene, 1x0, 2x1, 2
+Nisinho, 3x2,2x0, 2
+Tacinha, 2x0, 4x1, 2
+Tatiana, 2x1, 3x1, 2
+Tiago, 1x0, 2x2, 2
+Adnaldo, 2x1, --, 1
+Fernanda, 4x1, 3x0, 2
+Nininha, 3x1, --, 1
+Ivonete, 3x1, 4x2, 2

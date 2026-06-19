@@ -1,14 +1,15 @@
 // ==========================================
 // CONTROLE DO PLACAR: ALTERE APENAS AQUI!
 // ==========================================
-const GOLS_DO_BRASIL = 1;
-const GOLS_DO_ADVERSARIO = 1;
+const GOLS_DO_BRASIL = 0;
+const GOLS_DO_ADVERSARIO = 0;
 // ==========================================
 
 let apostasDoArquivo = [];
 
 async function carregarDadosDoTxt() {
     try {
+        // Altere para o nome do seu arquivo oficial na hospedagem se preferir (ex: bolao_copa.txt)
         const resposta = await fetch('bolao_copa.txt');
         if (!resposta.ok) throw new Error('Não foi possível ler o arquivo txt');
         
@@ -21,15 +22,23 @@ async function carregarDadosDoTxt() {
             linha = linha.trim();
             if (linha === "") return;
 
-            const regex = /^(\d+)x(\d+)\s+(.+)$/i;
-            const resultado = inline = linha.match(regex);
+            // Divide a linha por vírgula
+            const partes = linha.split(',');
+            
+            if (partes.length >= 2) {
+                const nome = partes[0].trim().toUpperCase();
+                const aposta1 = partes[1].trim();
+                const aposta2 = partes[2] ? partes[2].trim() : '--';
+                
+                // Calcula a quantidade de apostas com base no preenchimento ou no número informado
+                let qtd = 1;
+                if (partes[3]) {
+                    qtd = parseInt(partes[3].trim()) || 1;
+                } else if (aposta2 !== '--' && aposta2 !== '') {
+                    qtd = 2;
+                }
 
-            if (resultado) {
-                apostasDoArquivo.push({
-                    golsBr: parseInt(resultado[1]),
-                    golsAdv: parseInt(resultado[2]),
-                    nome: resultado[3].toUpperCase()
-                });
+                apostasDoArquivo.push({ nome, aposta1, aposta2, qtd });
             }
         });
 
@@ -49,29 +58,38 @@ carregarDadosDoTxt();
 function atualizarTabela() {
     if (apostasDoArquivo.length === 0) return;
 
-    const realBr = GOLS_DO_BRASIL;
-    const realAdv = GOLS_DO_ADVERSARIO;
+    const realPlacar = `${GOLS_DO_BRASIL}x${GOLS_DO_ADVERSARIO}`;
 
     const corpoTabela = document.getElementById('corpoTabela');
     corpoTabela.innerHTML = "";
 
     apostasDoArquivo.forEach((aposta, index) => {
         const linha = document.createElement('tr');
-        const acertouPlacar = (aposta.golsBr === realBr && aposta.golsAdv === realAdv);
         
-        if (acertouPlacar) {
+        // Verifica se alguma das duas apostas bate com o placar atual (ignorando espaços)
+        const limpouAp1 = aposta.aposta1.replace(/\s+/g, '');
+        const limpouAp2 = aposta.aposta2.replace(/\s+/g, '');
+        
+        const acertouAp1 = (limpouAp1 === realPlacar);
+        const acertouAp2 = (limpouAp2 === realPlacar && limpouAp2 !== '--');
+        
+        if (acertouAp1 || acertouAp2) {
             linha.className = "ganhador";
             linha.innerHTML = `
                 <td>${index + 1}</td>
                 <td>${aposta.nome}</td>
-                <td>${aposta.golsBr} x ${aposta.golsAdv}</td>
+                <td class="${acertouAp1 ? 'palpite-certeiro' : ''}">${aposta.aposta1}</td>
+                <td class="${acertouAp2 ? 'palpite-certeiro' : ''}">${aposta.aposta2}</td>
+                <td>${aposta.qtd}</td>
                 <td>🎉 ACERTOU!</td>
             `;
         } else {
             linha.innerHTML = `
                 <td>${index + 1}</td>
                 <td><strong>${aposta.nome}</strong></td>
-                <td>${aposta.golsBr} x ${aposta.golsAdv}</td>
+                <td>${aposta.aposta1}</td>
+                <td>${aposta.aposta2}</td>
+                <td>${aposta.qtd}</td>
                 <td class="nao-acertou">-</td>
             `;
         }
@@ -103,15 +121,12 @@ const video = document.getElementById('videoIntro');
 const containerVideo = document.getElementById('videoIntroContainer');
 
 function gerenciarAberturaVideo() {
-    // Verifica se o parente já entrou no site antes
     const jaAssistiu = localStorage.getItem('bolaoJaAssistiuVideo');
 
     if (jaAssistiu === 'sim') {
-        // Se já assistiu, mantém o vídeo oculto e não faz nada
         if (containerVideo) containerVideo.classList.add('video-oculto');
         if (video) video.pause();
     } else {
-        // Se é a primeira vez, remove a classe que esconde e tenta rodar
         if (containerVideo) containerVideo.classList.remove('video-oculto');
         
         if (video) {
@@ -120,7 +135,6 @@ function gerenciarAberturaVideo() {
                 console.log("Autoplay bloqueado. Aguardando clique em Entrar.");
             });
 
-            // Quando o vídeo terminar EM DEFINITIVO, chama a função de fechar
             video.addEventListener('ended', function() {
                 fecharVideoIntro();
             });
@@ -135,10 +149,7 @@ function fecharVideoIntro() {
     if (containerVideo) {
         containerVideo.classList.add('video-oculto');
     }
-    // Salva no celular da pessoa que ela já viu o vídeo
     localStorage.setItem('bolaoJaAssistiuVideo', 'sim');
 }
 
-// Executa a verificação assim que a página termina de carregar os dados
-// Adicione esta chamada logo após a função atualizarTabela() no seu fluxo principal
 setTimeout(gerenciarAberturaVideo, 100);

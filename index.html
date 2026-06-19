@@ -8,17 +8,18 @@
 </head>
 <body>
 
-<div id="videoIntroContainer" class="video-overlay video-oculto">
-    <div class="video-box">
-        <video id="videoIntro" autoplay muted playsinline controls>
-            <source src="video-bolao.mp4" type="video/mp4">
-            Seu navegador não suporta vídeos.
-        </video>
-        <button onclick="fecharVideoIntro()" id="btnPularVideo">Entrar no Bolão ⚽</button>
+    <div id="videoIntroContainer" class="video-overlay video-oculto">
+        <div class="video-box">
+            <video id="videoIntro" autoplay muted playsinline controls>
+                <source src="video-bolao.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <button onclick="fecharVideoIntro()" id="btnPularVideo">Entrar no Bolão ⚽</button>
+        </div>
     </div>
-</div>
+
     <div class="container">
-        <h1>BRASIL X MAROCOS AS 19H</h1>
+        <h1>BRASIL X HAITI AS 21:30</h1>
         <h2>VAMOS APOSTAR FAMÍLIA!</h2>
         <p>VAMOS TODOS APOSTAR NO BRASIL PARA GANHAR ESSA PARTIDA!</p>
         
@@ -36,47 +37,45 @@
                 <li>
                     <span class="label-pix">Código Pix Copia e Cola:</span>
                     <div class="pix-copia-cola">
-                        <input type="text" id="chavePix" value="00020126490014br.gov.bcb.pix0111438595458500212BOLAO BRASIL52040000530398654042.005802BR5916Tiago Cantiliano6009Sao Paulo62230519daqr4637438927415016304EC0F" readonly>
-                        <button onclick="copyPix()" id="btnCopiar">Copiar Código</button>
+                        <input type="text" id="chavePix" value="00020126530014br.gov.bcb.pix0111438595458500216BRASIL VS HAITI 5204000053039865802BR5916Tiago Cantiliano6009Sao Paulo62230519daqr4637438927768276304D6EE" readonly>
+                        <button onclick="copiarPix()" id="btnCopiar">Copiar Código</button>
                     </div>
                 </li>
             </ol>
         </div>
 
-        <!-- AVISOS IMPORTANTES SOBRE O PRÊMIO -->
         <div class="painel-avisos">
             <p>⚠ <strong>Se não houver ganhador, o valor será acumulado.</strong></p>
             <p>🤝 <strong>Se houver mais de um ganhador, o valor será dividido entre eles, MAS se entrarem em acordo pode acumular até o próximo jogo.</strong></p>
         </div>
 
-        <!-- PAINEL PARA EXIBIR O PLACAR REAL DO JOGO (SEGURO E TRAVADO) -->
         <div class="painel-resultado">
-            <h3>Placar Oficial do Jogo<br>EMPATE</h3>
+            <h3>Placar Oficial do Jogo<br></h3>
             <div class="valor-acumulado">Acumulado: R$ 32,00</div>
             
             <div class="placar-input">
                 <span>BRASIL</span>
-                <span id="placarBrasil">1</span>
+                <span id="placarBrasil">0</span>
                 <span>X</span>
-                <span id="placarAdversario">1</span>
-                <span>MAROCOS</span>
+                <span id="placarAdversario">0</span>
+                <span>HAITI</span>
             </div>
         </div>
 
-        <!-- TABELA DE PALPITES RESPONSIVA -->
         <div class="tabela-responsiva">
             <table id="tabelaBolao">
                 <thead>
                     <tr>
                         <th>Nº</th>
                         <th>Participante</th>
-                        <th>Aposta</th>
+                        <th>Aposta 1</th>
+                        <th>Aposta 2</th>
+                        <th>Qtd</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody id="corpoTabela">
-                    <!-- Preenchido dinamicamente pelo arquivo TXT -->
-                </tbody>
+                    </tbody>
             </table>
         </div>
     </div>
