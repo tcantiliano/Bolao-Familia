@@ -7,7 +7,6 @@ const GOLS_DO_ADVERSARIO = 1;
 
 let apostasDoArquivo = [];
 
-// Função que busca o arquivo .txt automaticamente
 async function carregarDadosDoTxt() {
     try {
         const resposta = await fetch('bolao_copa.txt');
@@ -23,7 +22,7 @@ async function carregarDadosDoTxt() {
             if (linha === "") return;
 
             const regex = /^(\d+)x(\d+)\s+(.+)$/i;
-            const resultado = linha.match(regex);
+            const resultado = inline = linha.match(regex);
 
             if (resultado) {
                 apostasDoArquivo.push({
@@ -34,7 +33,6 @@ async function carregarDadosDoTxt() {
             }
         });
 
-        // Aplica o placar travado na tela do usuário
         document.getElementById('placarBrasil').innerText = GOLS_DO_BRASIL;
         document.getElementById('placarAdversario').innerText = GOLS_DO_ADVERSARIO;
 
@@ -59,8 +57,6 @@ function atualizarTabela() {
 
     apostasDoArquivo.forEach((aposta, index) => {
         const linha = document.createElement('tr');
-        
-        // Verifica se a aposta bate exatamente com o placar do jogo
         const acertouPlacar = (aposta.golsBr === realBr && aposta.golsAdv === realAdv);
         
         if (acertouPlacar) {
@@ -79,18 +75,16 @@ function atualizarTabela() {
                 <td class="nao-acertou">-</td>
             `;
         }
-        
         corpoTabela.appendChild(linha);
     });
 }
 
-// Função para copiar o código Pix automaticamente
 function copiarPix() {
     const inputChave = document.getElementById('chavePix');
     const botao = document.getElementById('btnCopiar');
 
     inputChave.select();
-    inputChave.setSelectionRange(0, 99999); // Para celulares
+    inputChave.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(inputChave.value);
 
     botao.innerText = "Copiado! ✔";
@@ -101,3 +95,50 @@ function copiarPix() {
         botao.classList.remove("copiado");
     }, 3000);
 }
+
+// ==========================================
+// LÓGICA DE CONTROLE DO VÍDEO (RODA UMA SÓ VEZ)
+// ==========================================
+const video = document.getElementById('videoIntro');
+const containerVideo = document.getElementById('videoIntroContainer');
+
+function gerenciarAberturaVideo() {
+    // Verifica se o parente já entrou no site antes
+    const jaAssistiu = localStorage.getItem('bolaoJaAssistiuVideo');
+
+    if (jaAssistiu === 'sim') {
+        // Se já assistiu, mantém o vídeo oculto e não faz nada
+        if (containerVideo) containerVideo.classList.add('video-oculto');
+        if (video) video.pause();
+    } else {
+        // Se é a primeira vez, remove a classe que esconde e tenta rodar
+        if (containerVideo) containerVideo.classList.remove('video-oculto');
+        
+        if (video) {
+            video.muted = true;
+            video.play().catch(err => {
+                console.log("Autoplay bloqueado. Aguardando clique em Entrar.");
+            });
+
+            // Quando o vídeo terminar EM DEFINITIVO, chama a função de fechar
+            video.addEventListener('ended', function() {
+                fecharVideoIntro();
+            });
+        }
+    }
+}
+
+function fecharVideoIntro() {
+    if (video) {
+        video.pause();
+    }
+    if (containerVideo) {
+        containerVideo.classList.add('video-oculto');
+    }
+    // Salva no celular da pessoa que ela já viu o vídeo
+    localStorage.setItem('bolaoJaAssistiuVideo', 'sim');
+}
+
+// Executa a verificação assim que a página termina de carregar os dados
+// Adicione esta chamada logo após a função atualizarTabela() no seu fluxo principal
+setTimeout(gerenciarAberturaVideo, 100);
