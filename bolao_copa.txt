@@ -1,11 +1,11 @@
 Adriana, 2x1, 5x1, 2
 Aline,  3x1, 4x1, 2
 Danilo, 2x1, 3x1, 2
-Dedui, 3x0, --, 1
+Dedui, 3x0, 2x1, 1
 Dunga, 2x1, 4x2, 2
 Gilmar,  3x0, 5x1, 2
-Zé Maria, 3x1, --, 1
-Kamily, 3x1, --, 1
+Zé Maria, 3x1, 2x2, 1
+Kamily, 3x1, 1x1, 1
 Luciene, 1x0, 2x1, 2
 Nisinho, 3x2,2x0, 2
 Tacinha, 2x0, 4x1, 2
