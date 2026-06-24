@@ -8,3 +8,4 @@ Gilmar, 2x1,,1
 Aline, 2x0,,1
 Tiago, 3x2,,1
 Nisinho, 3x1,,1
+Ivonete, 3x1,,1
