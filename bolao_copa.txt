@@ -1,18 +1,10 @@
-Adriana, 2x1, 5x1, 2
-Aline,  3x1, 4x1, 2
-Danilo, 2x1, 3x1, 2
-Dedui, 3x0, 2x1, 2
-Dunga, 2x1, 4x2, 2
-Gilmar, 3x0, 5x1, 2
-Zé Maria, 3x1, 2x2, 2
-Kamily, 3x1, 1x1, 2
-Luciene, 1x0, 2x1, 2
-Nisinho, 3x2,2x0, 2
-Tacinha, 2x0, 4x1, 2
-Tatiana, 2x1, 3x1, 2
-Tiago, 1x0, 2x2, 2
-Adnaldo, 2x1, --, 1
-Fernanda, 4x1, 3x0, 2
-Nininha, 3x1, --, 1
-Ivonete, 3x1, 4x2, 2
-joyce, --, 5x1, 1
+Adriana, 3x1,,1
+Adnaldo, 3x1,,1
+Fernanda, 4x1,,1
+Kamily, 2x1,,1
+Zé Maria, 3x1,,1
+Tacinha, 4x1,,1
+Gilmar, 2x1,,1
+Aline, 2x0,,1
+Tiago, 3x2,,1
+Nisinho, 3x1,,1
