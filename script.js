@@ -1,7 +1,7 @@
 // ==========================================
 // CONTROLE DO PLACAR: ALTERE APENAS AQUI!
 // ==========================================
-const GOLS_DO_BRASIL = 2;
+const GOLS_DO_BRASIL = 3;
 const GOLS_DO_ADVERSARIO = 0;
 // ==========================================
 
