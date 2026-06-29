@@ -1,0 +1,13 @@
+Tatiana,3x1,,1 
+Dedui,3x1,,1 
+Fernanda,4x3,,1 
+Gilmar,2x0,,1 
+Aline,3x1,,1 
+Ivonete,2x1,,1 
+Tiago,3x2,,1
+Adriana,3x1,,1 
+Nisinho,2x1,,1 
+Tacinha,2x0,,1 
+Zé Maria,3x0,,1 
+Kamily,2x1,,1
+Adnaldo,2x1,,1
